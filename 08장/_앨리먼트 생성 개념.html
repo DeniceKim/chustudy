@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>앨리먼트 생성 개념</title>
+</head>
+<body>
+
+
+	<!-- append 
+		자식 앨리먼트 생성, 단, 현재 있는 자식의 맨 마지막에 생성
+	-->
+	<div>
+		<p>자식1</p>
+		<p>자식2</p>
+		<p>append</p><!-- div 에 append('<p>')를 할 경우 생성되는 위치 -->
+	</div>
+
+
+	<!-- prepend
+		자식 앨리먼트 생성, 단, 현재 있는 자식의 맨 처음에 생성
+	-->
+	<div>
+		<p>append</p><!-- div 에 prepend('<p>')를 할 경우 생성되는 위치 -->
+		<p>자식1</p>
+		<p>자식2</p>
+	</div>
+
+
+	<!-- before 
+		자신의 앞에 형재 앨리먼트 생성
+	-->
+	<div>before</div>
+	<div>기준 앨리먼트</div>
+
+
+	<!-- after
+		자신의 뒤에 형재 앨리먼트 생성
+	-->
+	<div>기준 앨리먼트</div>
+	<div>after</div>
+
+
+	<!-- wrap
+		지정한 앨리먼트를 감싸준다
+	-->
+	<div><!-- wrap -->
+		<p>기준</p>
+	</div>
+
+
+</body>
+</html>

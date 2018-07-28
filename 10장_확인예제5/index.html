@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<title>마우스 인 이벤트</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8;" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.easing.1.3.min.js"></script>
+<style>
+*, html, body, ul, li, a, p, span, i {margin:0; padding:0; border:0; list-style:none; vertical-align:top; text-decoration:none; font-family:Dotum;}
+
+.box {*zoom:1;}
+.box:after {display:block; clear:both; content:"";}
+.box li {float:left; margin:5px;}
+.box a {display:block; position:relative; width:200px; height:200px; color:#fff; overflow:hidden; background-image:url(img/circle.png); background-repeat:no-repeat; background-color:#bbb; border-radius:100%;}
+
+.box a i {position:absolute; left:0; top:0; z-index:1; width:100%; height:1000%;}
+.box a span {display:block; float:left; position:relative; z-index:2; background:red; opacity:0.01;}
+
+
+
+</style>
+<script>
+$(document).ready(function(){
+
+	var $box = $('.box li');
+	$box.each(function(i, e){
+		var $boxA = $(e).find('a');
+		for( i=0; i<8; i++ ){
+			$boxA.append('<span class="over0'+(i+1)+'">');
+		}
+		var $boxSpan = $boxA.find('span');
+		var boxISize = $boxA.width();
+		$boxSpan.css({'width':$boxA.width()/3, 'height':$boxA.width()/3});
+		$boxSpan.eq(3).css('width',$boxA.width()/2);
+		$boxSpan.eq(4).css('width',$boxA.width()/2);
+
+		$boxA.css({'background-size':boxISize+'px '+boxISize+'px', 'background-position':-boxISize+'px '+-boxISize+'px'});
+		var boxACss = [
+			{'background-position-x':'-'+boxISize+'px',		'background-position-y':'-'+boxISize+'px'},
+			{'background-position-x':'0px',						'background-position-y':'-'+boxISize+'px'},
+			{'background-position-x':''+boxISize+'px',		'background-position-y':'-'+boxISize+'px'},
+			{'background-position-x':'-'+boxISize+'px',		'background-position-y':'0px'},
+			{'background-position-x':''+boxISize+'px',		'background-position-y':'0px'},
+			{'background-position-x':'-'+boxISize+'px',		'background-position-y':''+boxISize+'px'},
+			{'background-position-x':'0px',						'background-position-y':''+boxISize+'px'},
+			{'background-position-x':''+boxISize+'px',		'background-position-y':''+boxISize+'px'},
+		];
+
+		var mouseArr = [];
+
+		$boxSpan.on({
+			mouseenter:function(){
+				if( !$boxA.is('.mousein') ){
+					var idx = $(this).index()-1;
+					$boxA.css(boxACss[idx]).stop().animate({'background-position-x':'0px', 'background-position-y':'0px'}, 200);
+					$boxA.addClass('mousein');
+				}
+			},
+			mouseleave:function(){
+				var idx = $(this).index()-1;
+				mouseArr = [];
+				mouseArr.push(idx);
+			}
+		});
+
+		$boxA.on({
+			mouseleave:function(){
+				var idx = mouseArr[0];
+				$boxA.stop().animate(boxACss[idx], 200);
+				$boxA.removeClass('mousein');
+			}
+		});
+	});
+
+
+
+});
+</script>
+</head>
+<body>
+
+	<ul class="box">
+		<li><a href="#none" style="width:400px; height:400px;"><i>list01</i></a></li>
+		<li><a href="#none"><i>list02</i></a></li>
+		<li><a href="#none"><i>list03</i></a></li>
+		<li><a href="#none"><i>list04</i></a></li>
+		<li><a href="#none"><i>list05</i></a></li>
+		<li><a href="#none"><i>list06</i></a></li>
+		<li><a href="#none"><i>list07</i></a></li>
+		<li><a href="#none"><i>list08</i></a></li>
+		<li><a href="#none"><i>list09</i></a></li>
+		<li><a href="#none"><i>list10</i></a></li>
+		<li><a href="#none"><i>list11</i></a></li>
+		<li><a href="#none"><i>list12</i></a></li>
+		<li><a href="#none"><i>list13</i></a></li>
+		<li><a href="#none"><i>list14</i></a></li>
+		<li><a href="#none"><i>list15</i></a></li>
+		<li><a href="#none"><i>list16</i></a></li>
+		<li><a href="#none"><i>list17</i></a></li>
+		<li><a href="#none"><i>list18</i></a></li>
+		<li><a href="#none"><i>list19</i></a></li>
+		<li><a href="#none"><i>list20</i></a></li>
+		<li><a href="#none"><i>list21</i></a></li>
+	</ul>
+
+
+</body>
+</html>

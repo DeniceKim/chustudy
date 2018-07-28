@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<title>목록 리스트</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8;" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.easing.1.3.min.js"></script>
+<style>
+*, html, body, ul, li, a, p {margin:0; padding:0; border:0; list-style:none; vertical-align:top; text-decoration:none; font-family:Dotum;}
+html {overflow-y:hidden;}
+
+.lst_btn {position:fixed; right:20px; top:20px;}
+.lst_btn li {margin-top:10px; width:20px; line-height:20px; text-align:center; font-size:11px; color:#fff; background:black; border-radius:100%; cursor:pointer;}
+.lst_btn li.on {color:red; background:#fff;}
+
+</style>
+<script>
+$(function(){
+	$(window).load(function(){
+
+		var $lst = $('.full-page .lst > li');
+		var lstLength = $lst.length;
+
+		//세로값 계산
+		var winH;
+		$(window).resize(function(){
+			winH = $(window).height();
+			$('.lst > li').css('height',winH);
+		});$(window).trigger('resize');
+
+
+		var sctIdx = 0;
+		var moving = false;
+
+		if(document.addEventListener){
+			document.addEventListener("mousewheel", MouseWheelHandler(), false);
+			document.addEventListener("DOMMouseScroll", MouseWheelHandler(), false);
+		}else{
+			sq.attachEvent("onmousewheel", MouseWheelHandler());
+		}
+
+		function MouseWheelHandler() {
+			return function (e) {
+				// cross-browser wheel delta
+				var e = window.event || e;
+				var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+
+				//Scroll Down
+				if( delta < 0 ){
+					if( sctIdx < lstLength-1 && !moving ){
+						sctIdx+=1;
+						moving = true;
+
+						console.log("Down", sctIdx);
+						$('body, html').stop().animate({'scrollTop':winH*sctIdx} ,6000 ,'easeOutElastic' ,function(){
+							moving = false;
+						});
+					}
+				}
+
+				//Scroll UP
+				else{
+					if( sctIdx > 0 && !moving ){
+						sctIdx-=1;
+						moving = true;
+
+						console.log("Up", sctIdx);
+						$('body, html').stop().animate({'scrollTop':winH*sctIdx} ,6000 ,'easeOutElastic' ,function(){
+							moving = false;
+						});
+					}
+				}
+				return false;
+			}
+		}
+
+
+	});
+});
+</script>
+</head>
+<body>
+
+	<div class="full-page">
+		<ul class="lst">
+			<li style="background:red;">111</li>
+			<li style="background:blue;">222</li>
+			<li style="background:green;">333</li>
+			<li style="background:pink;">444</li>
+		</ul>
+	</div>
+
+</body>
+</html>

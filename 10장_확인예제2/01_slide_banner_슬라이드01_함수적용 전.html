@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<title>01_slide_banner</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8;" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.easing.1.3.min.js"></script>
+<style>
+	* {margin:0; padding:0; vertical-align:top; list-style:none;}
+	.slide {position:relative; margin:10px;}
+	.slide .img li {display:inline;}
+	.slide .img {text-align:center;}
+	.slide .img img {position:absolute; left:0; top:0;}
+	.slide .img a {display:inline-block; position:relative; top:90%; z-index:99; width:20px; height:20px; font-size:0; text-indent:-9999px; background:#333; border-radius:100%; cursor:pointer;}
+	.slide .img li.on a {background:red;}
+
+	.slide .control {position:absolute; left:20px; top:20px; z-index:9; *zoom:1;}
+	.slide .control:after {display:block; clear:both; content:"";}
+	.slide .control span {float:left; width:40px; height:20px; text-align:center; font-size:0; background:url(img/count.png);}
+	.slide .control span i {font-style:normal; font-size:13px;}
+	.slide .control span i:first-child:after {content:"/";}
+	.slide .control a {float:left; width:19px; height:20px; font-size:0; text-indent:-9999px;}
+	.slide .control .prev {background:url(img/prev.png);}
+	.slide .control .play {background:url(img/play.png);}
+	.slide .control .stop {background:url(img/stop.png);}
+	.slide .control .next {background:url(img/next.png);}
+</style>
+<script>
+$(document).ready(function(){
+	//엘리먼트 변수 선언
+	var $slide = $('.slide');
+	var $slideImg = $slide.find('li');
+	var $slidePrev = $slide.find('.prev');
+	var $slideNext = $slide.find('.next');
+	var $slidePlay = $slide.find('.play');
+	var $slideStop = $slide.find('.stop');
+	var $slideNum = $slide.find('.num');
+	var $slideTotal = $slide.find('.total');
+	var slideLength = $slideImg.length;
+
+	//이미지 영역 사이즈 설정
+	var slideWidth = $slide.find('.img img').width();
+	var slideHeight = $slide.find('.img img').height();
+	$slide.css({'width':slideWidth, 'height':slideHeight, 'overflow':'hidden'});
+	$slide.find('.img').css({'width':slideWidth, 'height':slideHeight});
+
+	//페이징 기본 설정
+	$slideNum.text(1);
+	$slideTotal.text( slideLength );
+
+	//동작 시작
+	var idx = 0;
+	$slideImg.find('img').hide();
+	$slideImg.eq(0).addClass('on').find('img').show();
+
+	$slideNext.click(function(){
+		idx += 1;
+		$slideNum.text( idx+1 );
+		$slideImg.eq(idx).addClass('on').find('img').css('left',slideWidth).show().animate({'left':0});
+		$slideImg.eq(idx).prev().removeClass('on').find('img').animate({'left':-slideWidth}, function(){
+			$(this).hide();
+		});
+
+		if( idx > slideLength-1 ){
+			idx = 0;
+			$slideNum.text( idx+1 );
+			$slideImg.eq(idx).addClass('on').find('img').css('left',slideWidth).show().animate({'left':0});
+			$slideImg.eq(slideLength-1).removeClass('on').find('img').animate({'left':-slideWidth}, function(){
+				$(this).hide();
+			});
+
+		}
+	});
+
+	$slidePrev.click(function(){
+		idx -= 1;
+		$slideNum.text( idx+1 );
+		$slideImg.eq(idx).addClass('on').find('img').css('left',-slideWidth).show().animate({'left':0});
+		$slideImg.eq(idx).next().removeClass('on').find('img').animate({'left':slideWidth}, function(){
+			$(this).hide();
+		});
+
+		if( idx < 0 ){
+			idx = slideLength-1;
+			$slideNum.text( idx+1 );
+			$slideImg.eq(0).removeClass('on').find('img').animate({'left':slideWidth}, function(){
+				$(this).hide();
+			});
+		}
+	});
+
+
+
+});
+</script>
+</head>
+<body>
+
+	<div class="slide">
+		<div class="control">
+			<span class="pg">
+				<i class="num">0</i>
+				<i class="total">0</i>
+			</span>
+			<a href="#none" class="prev">이전</a>
+			<a href="#none" class="play">재생</a>
+			<a href="#none" class="stop">정지</a>
+			<a href="#none" class="next">다음</a>
+		</div>
+
+		<ul class="img">
+			<li>
+				<img src="img/main_01.jpg" />
+				<a href="#none">1</a>
+			</li>
+			<li>
+				<img src="img/main_02.jpg" />
+				<a href="#none">2</a>
+			</li>
+			<li>
+				<img src="img/main_03.jpg" />
+				<a href="#none">3</a>
+			</li>
+			<li>
+				<img src="img/main_04.jpg" />
+				<a href="#none">4</a>
+			</li>
+			<li>
+				<img src="img/main_05.jpg" />
+				<a href="#none">5</a>
+			</li>
+		</ul>
+	</div>
+
+
+	<!-- text-indent
+		<style>
+		.tt {display:inline-block; width:210px; margin:10px; line-height:30px; background:red; text-align:center;
+			letter-spacing:-0.05em;
+			text-indent:-0.05em;
+		}
+		</style>
+		<p class="tt">text-indent</p>
+	 -->
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>05_not_method</title>
+		<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+		<style>
+			html * { margin:0; padding:0; }
+			body span { color:red; font-size: 30px; }
+			#wrapper > ul > li { margin:5px; list-style: none; border: 1px solid green; }
+		</style>
+		<script>
+			$(document).ready(function(){
+				//$('#wrapper li:not(.el)').css('color','red')
+				$('#wrapper li').not('.el').css('color','red')
+			});
+		</script>
+	</head>
+	
+	<body>
+		<span>ul의 자식 엘리먼트중 클래스값이 el이 아닌 엘리먼트만 글자색을 변경해 주세요.</span>
+		<div id="wrapper">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li class="el">4</li>
+				<li>5</li>
+				<li>6</li>
+			</ul>
+		</div>
+
+		<div class="menu">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+			<div>
+				<div>1111</div>
+				<div>2222</div>
+				<div>3333</div>
+			</div>
+		</div>
+
+		<script>
+			$(function(){
+				var $tab = $('.menu li');
+				var $con = $('.menu > div > div');
+				$tab.eq(0).addClass('on');
+				$con.not(':first').hide();
+
+				$tab.click(function(){
+					var idx = $(this).index();
+					$tab.eq(idx).addClass('on').siblings().removeClass('on');
+					$con.eq(idx).show().siblings().hide();
+				});
+			});
+		</script>
+
+		<style>
+		* {list-style:none;}
+		.menu ul {*zoom:1;}
+		.menu ul:after {display:block; clear:both; content:"";}
+		.menu ul li {float:left; width:100px; line-height:50px; text-align:center; color:#666; background:#eee;}
+		.menu ul li.on {color:#fff; background:#000;}
+		.menu > div > div {width:300px; height:100px; background:#000; color:#fff;}
+		</style>
+	</body>
+</html>

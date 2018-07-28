@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>01_CSS스타일_적용해_보기</title>
+		<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+		<style>
+			html * { margin:0; padding:0; }
+			body span { color:red; font-size: 30px; }
+			li { margin:5px; list-style: none; border: 1px solid green; }
+			#wrapper {	margin:20px;	}
+			#el { margin-top:0px; background-color: #efefef; padding:15px; color:blue;	font-size:24px; }
+			#controller { margin:0; }
+			#input { height:30px; }
+			#input select { float: left; margin-right:5px; }
+			#input input { float:left; margin-right:5px; }
+		</style>
+		<script>
+			$(document).ready(function(){
+				//change(), val()
+
+				/*
+				var $sel = $('.select'),
+				     $inp = $('.input'),
+					 $btn = $('.button'),
+					 $con = $('#content');
+
+				$sel.change(function(){
+					var thisVal = $(this).val();
+				});
+
+				$btn.click(function(){
+					var selVal = $sel.val();
+					var inpVal = $inp.val();
+					$con.css(selVal,inpVal);
+				});
+				*/
+/*
+				var select;											//속성 저장 공간 만들어.
+				var value;											//엘리먼트 속성 알아오는 공간 만들어.
+
+				$('.select').change(function(){			//셀렉트의 옵션을 선택했을때
+					select = $(this).val();						//내가 선택한 옵션 value 값을 가지고 와
+					value = $('#content').css(select);	//위에서 선택한 옵션의 값 중 적용될 엘리먼트의 현재값을 가져와.
+					$('.input').val(value)						//인풋에 알아온 값 표시해
+				});
+
+				$('.button').click(function(){				//버튼을 클릭했을 때
+					value = $('.input').val();					//현재 인풋의 value 값을 가지고 와서
+					$('#content').css(select, value);	//해당 엘리먼트에 적용해
+				});
+			});
+*/
+/*
+				var select;
+				var value;
+
+				$('.select').change(function(){
+					select = $(this).val();
+					value = $('#content').css(select);
+					$('.input').val(value);
+				});
+
+				$('.button').click(function(){
+					value = $('.input').val();
+					$('#content').css(select,value);
+				});
+			});
+*/
+
+	var select;
+	var value;
+
+	$('.select').change(function(){
+		select = $(this).val();
+		value = $('.content').css(select);
+		$('.input').val(value);
+	});
+
+	$('.button').click(function(){
+		value = $('.input').val();
+		$('.content').css(select,value);
+	});
+
+});
+
+
+	</script>
+	</head>
+	
+	<body>
+	<!--
+		<div id="wrapper">
+			<div id="controller">
+				<div id="input">
+					<select class="select">
+						<option value="">CSS속성을 선택해 주세요.</option>
+						<option value="fontSize">font-size</option>
+						<option value="color">color</option>
+						<option value="backgroundColor">background-color</option>
+						<option value="margin">margin</option>
+						<option value="padding">padding</option>
+					</select>
+
+					<input class="input" type="text" value="" />
+
+					<input class="button" type="button" value="적용"/>
+				</div>
+			</div>
+			<div id="content">
+				이곳에 CSS 스타일을 적용시켜 주세요.
+			</div>
+		</div>
+		-->
+		<div id="wrapper">
+			<div id="controller">
+				<div id="input">
+					<select class="select">
+						<option value="">CSS속성을 선택해주세요</option>
+						<option value="fontSize">font-size</option>
+						<option value="color">color</option>
+						<option value="backgroundColor">background-color</option>
+						<option value="margin">margin</option>
+						<option value="padding">padding</option>
+					</select>
+					<input type="text" value="" class="input" />
+					<input type="button" value="입력" class="button" />
+				</div>
+			</div>
+			<div class="content">
+				이곳에 CSS 스타일을 적용시켜 주세요.
+			</div>
+		</div>
+	</body>
+</html>

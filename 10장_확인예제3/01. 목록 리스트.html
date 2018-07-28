@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<title>목록 리스트</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8;" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.easing.1.3.min.js"></script>
+<style>
+	*, html, body, ul, li, a, p {margin:0; padding:0; border:0; list-style:none; vertical-align:top; text-decoration:none; font-family:Dotum;}
+	.notice_w {position:relative; float:left; width:247px; margin:20px; background:#eee;}
+	.notice_w dt {height:20px; line-height:20px; font-size:14px; font-weight:bold; letter-spacing:-1px; color:#444;}
+	.notice_w dd {margin-top:20px;}
+	.notice_w .notice_w_lst {overflow:hidden;}
+	.notice_w li {height:23px; line-height:23px; padding-left:8px; font-size:12px; letter-spacing:-1px; background:url(img/dot4.gif) no-repeat 0px 10px;}
+	.notice_w li a {color:#555;}
+	.notice_w .notice_w_btn {position:absolute; top:0px; right:0px;}
+
+	.notice_w_btn {*zoom:1;}
+	.notice_w_btn:after {display:block; clear:both; content:"";}
+	.notice_w_btn .count {float:left; display:inline-block; margin-right:5px; padding-right:5px; line-height:20px; font-size:12px; color:#666;}
+	.notice_w_btn a {float:left; display:block; width:18px; height:18px; margin-right:2px; text-indent:-1000px; border:1px solid #ddd; border-radius:3px; overflow:hidden;}
+	.notice_w_btn .prev {background:url(img/btn_prev.gif) no-repeat 6px center;}
+	.notice_w_btn .next {background:url(img/btn_next.gif) no-repeat 7px center;}
+</style>
+<script>
+$(document).ready(function(){
+
+	var
+	$notice = $('.notice_w'),
+	$noticeLst = $notice.find('ul li'),
+	$noticeLng = $noticeLst.length,
+	$noticeCur = $notice.find('.current'),
+	$noticeTot = $notice.find('.ntotal'),
+	$noticePrev = $notice.find('.prev'),
+	$noticeNext = $notice.find('.next');
+
+	var
+	idx = 0,
+	lstNum = 4,
+	lstTotal = Math.ceil($noticeLng/lstNum);
+
+	$noticeCur.text(idx+1);
+	$noticeTot.text(lstTotal);
+
+	//다음 클릭
+	$noticeNext.click(function(){
+		idx += 1;
+		lstSlice(idx);
+
+		if( idx > lstTotal-1 ){
+			idx = 0;
+			lstSlice(idx);
+		}
+	});
+
+	//이전 클릭
+	$noticePrev.click(function(){
+		idx -= 1;
+		lstSlice(idx);
+
+		if( idx < 0 ){
+			idx = lstTotal-1;
+			lstSlice(idx);
+		}
+	});
+
+	//페이지 로드시 함수 실행
+	lstSlice(idx);
+
+	//리스트 슬라이스
+	function lstSlice(idx){
+		$noticeCur.text(idx+1);
+
+		var num = idx * lstNum;
+		$noticeLst.hide().slice(num, num+lstNum).show();
+	}
+
+
+});
+</script>
+</head>
+<body>
+
+	<dl class="notice_w">
+		<dt>알림창</dt>
+		<dd>
+			<ul class="notice_w_lst">
+				<li><a href="#"><b>서울광장 스케이트장</b></a></li>
+				<li><a href="#"><b>서울시 e-Book 홈페이지</b></a></li>
+				<li><a href="#"><b>서울사랑 12월호</b></a></li>
+				<li><a href="#"> 천만시민 생활의 힘</a></li>
+				<li><a href="#"> 서울의 인구는? <b>서울통계 보기</b></a></li>
+				<li><a href="#">희망서울 홍보 브로슈어</a></li>
+				<li><a href="#">서울사진은행 와우서울</a></li>
+				<li><a href="#">반부패,청렴시책</a></li>
+				<li><a href="#">서울 인포그래픽스로 보기</a></li>
+				<li><a href="#">내친구서울 커뮤니티</a></li>
+			</ul>
+			<div class="notice_w_btn">
+				<span class="count">
+					<strong class="current">0</strong> / <span class="ntotal">0</span>
+				</span>
+				<a href="#이전알림보기" title="이전알림보기" class="prev">이전으로</a>
+				<a href="#다음알림보기" title="다음알림보기" class="next">다음으로</a>
+			</div>
+		</dd>
+	</dl>
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<title>목록 리스트</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8;" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.easing.1.3.min.js"></script>
+<style>
+*, html, body, ul, li, a, p {margin:0; padding:0; border:0; list-style:none; vertical-align:top; text-decoration:none; font-family:Dotum;}
+html {overflow-y:;}
+
+.lst_btn {position:fixed; right:20px; top:20px;}
+.lst_btn li {margin-top:10px; width:20px; line-height:20px; text-align:center; font-size:11px; color:#fff; background:black; border-radius:100%; cursor:pointer;}
+.lst_btn li.on {color:red; background:#fff;}
+
+</style>
+<script>
+$(function(){
+	$(window).load(function(){
+		var $lst = $('.lst > li');
+		var lstLength = $lst.length;
+		
+		$('body').append('<ul class="lst_btn">');
+		for( i=0; i<lstLength; i++ ){
+			$('.lst_btn').append('<li>'+(i+1)+'</li>');
+		}
+		var $btn = $('.lst_btn > li');
+
+
+		//세로값 계산
+		var offTop = [];
+		$(window).resize(function(){
+			var winH = $(window).height();
+			$lst.css('height',winH);
+
+			offTop = [];
+			$lst.each(function(i, e){
+				var oTop = $(e).offset().top;
+				offTop.push(oTop);
+
+				var sctTop = 0;
+				$(window).scroll(function(){
+					var sct = $(window).scrollTop();
+					var onIdx = $('.lst_btn > li.on').index();
+					//console.log(sct, offTop);
+
+					if( sct >= offTop[i] ){
+						$btn.eq(i).addClass('on').siblings().removeClass('on');
+					}
+
+
+					var movingEef = false;
+					//UP
+					if( sct < sctTop && !movingEef /*&& $btn.eq(onIdx).prev().is(':visible')*/ ){
+						//console.log('up');
+
+						var idx = onIdx-1;
+						console.log(onIdx)
+						$('body, html').stop().animate({scrollTop:offTop[onIdx]});
+						movingEef = true;
+
+					//DOWN
+					}else if( sct > sctTop /*&& $btn.eq(onIdx).next().is(':visible')*/ ){
+						//console.log('down')
+
+						var idx = onIdx+1;
+						console.log(onIdx)
+						$('body, html').stop().animate({scrollTop:offTop[idx]});
+						movingEef = false;
+
+					}
+					sctTop = sct;
+				});
+				$(window).trigger('scroll');
+			});
+
+			/*
+			$btn.click(function(){
+				//if( !$btn.parent().is('.moving') ){
+					var idx = $(this).index();
+					//$btn.parent().addClass('.moving');
+					$('body, html').stop().animate({scrollTop:offTop[idx]}, function(){
+						//$btn.parent().removeClass('.moving');
+					});
+				//}
+			});
+			*/
+		});
+		$(window).trigger('resize');
+
+
+		//스크롤 액션
+		/*
+		var sctTop = 0;
+		$(window).scroll(function(){
+			var sct = $(window).scrollTop();
+			var onIdx = $('.lst_btn > li.on').index();
+
+
+
+			if( sct < sctTop && $btn.eq(onIdx).prev().is(':visible') ){
+				$btn.eq(onIdx).prev().click();
+				
+				//console.log('up');
+
+			}else if( sct > sctTop && $btn.eq(onIdx).next().is(':visible') ){
+				$btn.eq(onIdx).next().click();
+
+				
+				//console.log('down')
+			}
+
+			sctTop = sct;
+		});
+		*/
+		
+
+	});
+});
+</script>
+</head>
+<body>
+
+	<ul class="lst">
+		<li style="background:red;">111</li>
+		<li style="background:blue;">222</li>
+		<li style="background:green;">333</li>
+		<li style="background:pink;">444</li>
+	</ul>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<title>목록 리스트</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8;" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.easing.1.3.min.js"></script>
+<style>
+*, html, body, ul, li, a, p {margin:0; padding:0; border:0; list-style:none; vertical-align:top; text-decoration:none; font-family:Dotum;}
+html {overflow-y:hidden;}
+
+.full-page {}
+.full-page .nav {position:fixed; right:20px; top:20px;}
+.full-page .nav li.on a,
+.full-page .num li.on a {color:#fff; background:#000;}
+.full-page .num {position:fixed; right:100px; top:20px;}
+
+</style>
+<script>
+$(function(){
+	$(window).load(function(){
+
+		//기본 변수
+			var $fullPage = $('.full-page');
+			var $fullLst = $fullPage.find('.lst > li');
+			var lstLength = $fullLst.length;
+
+
+		//세로값 계산
+			var winH;
+			$(window).resize(function(){
+				winH = $(window).height();
+				$('.lst > li').css('height',winH);
+			});$(window).trigger('resize');
+
+
+		//세로네비 생성
+			$fullPage.append('<ul class="nav">', '<ul class="num"></ul>');
+			for( i=0; i<lstLength; i++ ){
+				$fullPage.find('.nav, .num').append('<li><a href="#page'+(i+1)+'">'+(i+1)+" 페이지"+'</a></li>');
+			}
+			var $fullNav = $fullPage.find('.nav li');
+			var $fullNum = $fullPage.find('.num li');
+			$fullNav.first().addClass('on');
+
+			var c_Idx;
+			$fullNav.click(function(){
+				c_Idx = $(this).index();
+				$fullNav.eq(c_Idx).addClass('on').siblings().removeClass('on');
+				$('body, html').stop().animate({'scrollTop':winH*c_Idx} ,eff.speed ,eff.easing);
+				$fullPage.addClass('clickAction');
+			});
+
+
+		//휠 이벤트
+			var sctIdx = 0;
+			var moving = false;
+			var eff = {
+				speed:500,
+				easing:'easeInOutCubic'
+			}
+
+			if(document.addEventListener){
+				document.addEventListener("mousewheel", MouseWheelHandler(), false);
+				document.addEventListener("DOMMouseScroll", MouseWheelHandler(), false);
+			}else{
+				sq.attachEvent("onmousewheel", MouseWheelHandler());
+			}
+
+			function MouseWheelHandler(test) {
+				return function (e) {
+					// cross-browser wheel delta
+					var e = window.event || e;
+					var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+
+					//Scroll Down
+					if( delta < 0 ){
+						if( $fullPage.is('.clickAction') ) sctIdx = c_Idx;
+						if( sctIdx < lstLength-1 && !moving ){
+							sctIdx++;
+
+							moving = true;
+							$fullPage.removeClass('clickAction');
+							$fullNav.eq(sctIdx).addClass('on').siblings().removeClass('on');
+							console.log("Down", sctIdx); //확인
+							$('body, html').stop().animate({'scrollTop':winH*sctIdx} ,eff.speed ,eff.easing ,function(){
+								moving = false;
+							});
+							//numClick(sctIdx)	주소창 주소 바꾸기
+						}
+					}
+
+					//Scroll UP
+					else{
+						if( $fullPage.is('.clickAction') ) sctIdx = c_Idx;
+						if( sctIdx > 0 && !moving ){
+							sctIdx--;
+
+							moving = true;
+							$fullPage.removeClass('clickAction');
+							$fullNav.eq(sctIdx).addClass('on').siblings().removeClass('on');
+							console.log("Up", sctIdx); //확인
+							$('body, html').stop().animate({'scrollTop':winH*sctIdx} ,eff.speed ,eff.easing ,function(){
+								moving = false;
+							});
+							//numClick(sctIdx)	주소창 주소 바꾸기
+						}
+					}
+					return false;
+				}
+			}
+
+			/*
+			function numClick(idx){
+				console.log('test')
+				$fullNum.eq(idx).trigger('click');
+			}
+			*/
+
+
+
+	});
+});
+</script>
+</head>
+<body>
+
+	<div class="full-page">
+		<ul class="lst">
+			<li style="background:red;">111</li>
+			<li style="background:blue;">222</li>
+			<li style="background:green;">333</li>
+			<li style="background:pink;">444</li>
+		</ul>
+	</div>
+
+</body>
+</html>

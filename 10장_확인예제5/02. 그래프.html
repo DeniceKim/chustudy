@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<title>마우스 인 이벤트</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8;" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.easing.1.3.min.js"></script>
+<style>
+*, html, body, ul, li, a, p, span, i {margin:0; padding:0; border:0; list-style:none; vertical-align:top; text-decoration:none; font-family:Dotum;}
+
+
+.graph {padding-right:50px;}
+.graph * {font-family:Tahoma;}
+.graph li {position:relative; margin-top:10px; height:40px; line-height:40px; background:#eee;}
+.graph .num {position:absolute; top:0; margin-left:5px; font-size:14px; font-weight:bold; color:#666;}
+.graph .num i {font-style:normal; font-weight:bold;}
+.graph .bar {width:0; height:40px; background:#ccc url(img/graph_bar.png);}
+.graph li.on .bar {background-color:#f00;}
+.graph li.on .num {color:#f00;}
+
+
+</style>
+<script>
+$(document).ready(function(){
+
+/*
+	var $graph = $('.graph > li');
+	var numArr = [];
+
+	$graph.each(function(i, e){
+		var $graphBar = $(e).find('.bar');
+		var $graphNum = $(e).find('.num');
+		var barNum = $(e).find('i').text();
+		numArr.push(barNum);
+		//console.log(numArr)
+
+		$graphBar.animate({'width':barNum+'%'});
+		$graphNum.animate({'left':barNum+'%'});
+
+		//숫자 카운트 업
+		var j = 0;
+		setInterval(countUp, 10);
+		function countUp(){
+			if( j < barNum ){
+				j += 1;
+				$graphNum.text(j+'%')
+			}
+		}
+
+
+		var bigNum = numArr.sort(function(a,b){
+			return b-a;
+		});
+		console.log(numArr[0])
+
+		
+		if( barNum == bigNumArr[0] ){
+			$(e).addClass('on');
+		}
+		
+		
+	});
+*/
+
+
+	var $graph = $('.graph > li');
+	var numArr = [];				//각각의 그래프 값
+	var numArrBig = [];			//각각의 값중 큰 값
+
+	$graph.each(function(i, e){
+		var $graphBar = $(e).find('.bar');
+		var $graphNum = $(e).find('.num');
+		var barNum = $(e).find('i').text();
+		numArr.push(barNum);
+		numArrBig.push(barNum);
+
+		$graphBar.animate({'width':barNum+'%'}, 500);
+		$graphNum.animate({'left':barNum+'%'}, 500);
+		
+
+		
+
+		//숫자 카운트 업
+		var j = 0;
+		setInterval(countUp, 15);
+		function countUp(){
+			if( j < barNum ){
+				j += 1;
+				$(e).find('i').text(j);
+			}
+		}
+	});
+
+	//큰 값을 찾아서 클래스 생성
+	numArrBig.sort(function(a,b){ return b-a; });
+	for( i=0; i<$graph.length; i++ ){
+		if( numArr[i] == numArrBig[0] ){
+			$graph.eq(i).addClass('on');
+		}
+	}
+
+
+
+});
+</script>
+</head>
+<body>
+
+
+	<ul class="graph" style="margin:20px;">
+		<li><p class="bar"></p><p class="num"><i>10</i>%</p></li>
+		<li><p class="bar"></p><p class="num"><i>20</i>%</p></li>
+		<li><p class="bar"></p><p class="num"><i>60</i>%</p></li>
+		<li><p class="bar"></p><p class="num"><i>10</i>%</p></li>
+	</ul>
+
+
+
+</body>
+</html>
