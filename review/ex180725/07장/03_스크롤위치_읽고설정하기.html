@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>03_스크롤위치_읽고설정하기</title>
+		<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+		<style>
+			* { margin:0; padding:0; }
+			#wrapper { width:2000px; height:2000px; padding:30px; }
+			#info { position:fixed; }
+			#form { margin-top: 20px;}
+			#form span { color:red; }
+		</style>
+		<script>
+			$(document).ready(function(){
+				//현재 스크롤 위치 표시
+				var scrollTop = $('.scrollTop');
+				var scrollLeft = $('.scrollLeft');
+				
+				$(window).scroll(function(){
+					var sct = $(window).scrollTop();
+					var scl = $(window).scrollLeft();
+					
+					scrollTop.text(sct);
+					scrollLeft.text(scl);
+				});
+
+				//지정한 값으로 스크롤 이동
+				var yField = $('.yField');
+				var xField = $('.xField');
+				var btn = $('.btn');
+				
+				btn.click(function(){
+					var top = yField.val();
+					var left = xField.val();
+					$('html, body').animate({'scrollTop':top, 'scrollLeft':left});
+				});
+				
+			});
+
+
+		</script>
+	</head>
+	
+	<body>
+		<div id="wrapper">
+			<div id="info">
+				<span>scrollLeft = </span><span class="scrollLeft">0</span><br>
+				<span>scrollTop = </span><span class="scrollTop">0</span>
+				<div id="form">
+					<span>이동시킬 스크롤의 위치값을 입력해 주세요.</span><br>
+					<input type="text" class="yField" value="" />
+					<input type="text" class="xField" value="" />
+					<input type="button" class="btn" value="입력" />
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

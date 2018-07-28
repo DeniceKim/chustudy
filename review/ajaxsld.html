@@ -1,0 +1,77 @@
+<div class="box uxeach">
+	<h2>Ajax Test</h2>
+	<div class="uxpaging">
+		<i class="uxcur"></i> / <b class="uxtotal"></b>
+	</div>
+	<div class="uxbtn">
+		<a href="#" class="btn uxprev">&lt;</a>
+		<a href="#" class="btn uxnext">&gt;</a>
+	</div>
+	<ul class="uxlst">
+	</ul>
+</div>
+<script>
+$(function() {
+	$('.uxeach').each(function(i, e){
+		
+		append();
+		appendTo();
+		function append(){
+			var fruits=["사과", "바나나", "오렌지", "멜론", "수박"];
+
+			$.each(fruits, function(j, k){
+				$(".uxeach .uxlst").append($("<li>"+k+"</li>"));
+			});
+		}
+		function appendTo(){
+			var cars=["소나타", "아우디", "벤츠"];
+
+			$.each(cars, function(j, k){
+				$("<li>" + k +"</li>").appendTo(".uxeach .uxlst");
+			});
+		}
+		
+		var $uxPaging = $(e).find('.uxpaging');
+		var $uxCur = $(e).find('.uxcur');
+		var $uxTotal = $(e).find('.uxtotal');
+		var $uxBtn = $(e).find('.btn');
+		var $uxBtnNext = $(e).find('.uxnext');
+		var $uxBtnPrev = $(e).find('.uxprev');
+		var $uxLst = $(e).find('.uxlst');
+		var $uxLstItem = $(e).find('.uxlst li');
+			
+		
+		var uxcur = 0;
+		var uxlen = 2;
+		var uxpage = Math.ceil($uxLstItem.length / uxlen);
+		$uxTotal.text(uxpage);
+		
+		uxSlice(uxcur);
+		function uxSlice(uxcur){
+			var uxidx = uxcur * uxlen;
+			$uxCur.text(uxcur+1);
+			$uxLstItem.hide().slice(uxidx, uxidx+uxlen).show();
+		}
+		$uxBtnNext.on('click', function(){
+			uxcur ++;
+			uxSlice(uxcur);
+			if(uxcur >= uxpage){
+				uxcur = 0;
+				uxSlice(uxcur);
+			}
+			return false;
+		});
+		$uxBtnPrev.on('click', function(){
+			uxcur --;
+			uxSlice(uxcur);
+			if(uxcur < 0){
+				uxcur = uxpage-1;
+				uxSlice(uxcur);
+			}
+			return false;
+		});
+	});
+
+	
+});    
+</script>

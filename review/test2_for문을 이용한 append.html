@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>test2</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><!--// 구글 제이쿼리 //-->
+<style>
+	.btn {position:fixed; left:10px; top:50%;}
+	.btn li {
+		width:10px; height:10px; background:red; border-radius:100%;
+		font-size:0; text-indent:-9999px;
+	}
+</style>
+<script>
+$(function(){
+	var btnLength = $('.visual li').length;
+	
+	$('body').append('<ul class="btn">');
+	for( i=0; i<btnLength; i++ ){
+		$('.btn').append('<li>'+ (i+1) +'</li>');
+	}
+	
+});
+</script>
+</head>
+<body>
+<ul class='visual'>
+	<li>비주얼1</li>
+	<li>비주얼2</li>
+	<li>비주얼3</li>
+	<li>비주얼4</li>
+</ul>
+
+</body>
+</html>
+
+

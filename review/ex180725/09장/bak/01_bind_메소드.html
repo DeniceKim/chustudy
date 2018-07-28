@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>01_bind_메소드</title>
+		<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+		<style>
+			html * { margin:0; padding:0; }
+			.box_a {display:block; height:200px;}
+			.box_a:hover,
+			.box_a:focus {outline:10px solid #000;}
+			#box { width:200px; height:200px; border:2px solid blue; margin-left:300px; margin-top:200px; background-color:blue;}
+			#box.mouseenter { background-color: red; }
+			#box.mouseleave { background-color: green; }
+			#box.mousedown { background-color: purple; }
+			#box.mouseup { background-color: #FF9C00; }
+			#box > p { padding:30px; color:white; }
+		</style>
+		<script>
+			$(document).ready(function(){
+				var box = $('#box');
+				box.on({
+					/*
+					//mouseover -> mouseenter로 대체
+					//mouseout -> mouseleave로 대체
+					//mouseenter
+					mouseenter:function(){
+						$(this).removeClass().addClass('mouseenter');
+						$(this).text('mouseenter');
+						$(this).stop().animate({'width':100, 'height':100}, 200);
+					},
+					//mouseleave
+					mouseleave:function(){
+						$(this).removeClass().addClass('mouseleave');
+						$(this).text('mouseleave');
+						$(this).stop().animate({'width':200, 'height':200}, 200);
+					},
+					//mousedown
+					mousedown:function(){
+						$(this).removeClass().addClass('mousedown');
+						$(this).text('mousedown');
+						$(this).stop().animate({'width':300, 'height':300}, 200);
+					},
+					//mouseup
+					mouseup:function(){
+						$(this).removeClass().addClass('mouseup');
+						$(this).text('mouseup');
+						$(this).stop().animate({'width':50, 'height':50}, 200);
+					}
+					*/
+				});
+				
+				box.on('focusin mouseenter', function(){
+					$(this).removeClass().addClass('mouseenter');
+					console.log('aaa')
+				});
+
+			});
+		</script>
+	</head>
+	
+	<body>
+		<div id="box">
+			<a class="box_a" href="#"><p>eventType명으로 텍스트 컨테츠를 설정해 주세요.</p></a>
+		</div>
+	</body>
+</html>

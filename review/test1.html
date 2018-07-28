@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>test1</title>
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><!--// 구글 제이쿼리 //-->
+</head>
+<body>
+ 
+ 
+	<!--<a href="#" class="pp">더하기</a>
+	<a href="#" class="mm">빼기</a>
+	<p class="num">0</p>-->
+
+<script>
+$(function(){
+	
+/*	var num = 0;
+	
+	$('.pp').click(function(){
+		var text = '더하기';
+		num += 2;
+		$('.num').text(num);
+		console.log(num, text);
+	});
+	
+	$('.mm').click(function(){
+		var text = '빼기';
+		num -= 2;
+		$('.num').text(num, text);
+		console.log(num, text);
+	});
+	
+	
+	// % = 나눈값의 나머지
+	var odd_even = 876353;
+	
+	//odd_even_f(odd_even);
+	
+	function odd_even_f(num){
+		var sum = num % 2;
+		if( sum == 1 ){
+			console.log('홀수');
+		}else if( sum == 0 ){
+			console.log('짝수');
+		}else{
+			console.log('숫자가 아닙니다');
+		}
+	}
+	*/
+	
+/*	//변수선언 방식
+	var aaa, bbb, ccc;
+	aaa = '나는';
+	bbb = '추교성';
+	ccc = 123;
+	//console.log(aaa, bbb, ccc);
+	
+	var ddd = '나는';
+	var eee = '추교성';
+	var fff = 123;
+	//console.log(ddd, eee, fff);
+	$('.pp').click(function(){
+		ddd = '너는';
+		console.log(ddd)
+	});*/
+	
+	
+	
+	//if의 조건 true / false;
+/*	var test = false;
+	var aaa = 1;
+	if( test ){
+	   console.log('true');
+	}*/
+	
+	
+	
+	//배열
+	/*
+		Math.cell(); //올림
+		Math.floow(); //내림
+		Math.random();
+		length;
+	*/
+/*	var arr1 = [];
+	arr1 = ['사과', '딸기', '바나나', '수박', '참외'];
+	console.log( arr1 );
+	arr1.push('메론');
+	console.log( arr1 );
+	
+	test_arr(arr1);
+	
+	function test_arr(num){
+		var idx = Math.floor( Math.random() * num.length );
+		console.log( 'idx=', idx, arr1[idx] );
+	}
+	
+
+	
+	$(function(){
+		var boxArr = [];
+		$('.push li').each(function(i, e){
+			var width = $(e).width();
+			
+			boxArr.push(width)
+			console.log(boxArr)
+		});
+	});*/
+	
+	
+	//for문
+	/*for( i=1; i<10; i++ ){
+		console.log(i, '단')
+		document.write(i, '단' + '<br>' )
+		for( k=1; k<10; k++ ){
+			console.log(i, '*',k, '=', i*k)
+			document.write(i, '*',k, '=', i*k + '<br>')
+		}
+	}*/
+	
+	
+	
+	//if문
+	//true, false로만 작동
+	//== 같을때
+	//=== 같을때( String 또는 Number의 형태까지 따지는 조건 )
+	//<> 작거나 클때
+	//<= 크거나 같을때
+	//>= 작거나 같을때
+	//!= 같지 않을때
+	
+	//두개 이상의 조건을 따질때
+	//&& 모든 조건이 맞을 때
+	//|| 그 중에 하나라도 맞을 때
+	
+	/*var if_num = 1;
+	
+	if( if_num == 2 || !$('.abc').is(':visible') ){
+	   console.log('true')
+	}else{
+	   console.log('false')
+	}*/
+	
+	
+	/*
+	var grade = 45;
+	
+	sum(grade);
+	
+	function sum(num){
+		if( 0 <= num && num <= 20 ){
+		   console.log('가')
+		}
+		
+		else if( 21 <= num && num <= 40 ){
+		   console.log('양')
+		}
+		
+		else if( 41 <= num && num <= 60 ){
+		   console.log('미')
+		}
+		
+		else if( 61 <= num && num <= 80 ){
+		   console.log('우')
+		}
+		
+		else if( 81 <= num && num <= 100 ){
+		   console.log('수')
+		}
+		console.log(num)
+	}
+	*/
+	
+	
+
+});
+</script>
+
+<!--
+<ui class='push'>
+	<li style='width:100px'></li>
+	<li style='width:200px'></li>
+	<li style='width:500px'></li>
+</ui> 
+-->
+
+<!--<div class="abc">안녕</div>-->
+
+<style>
+	*, html, body {margin:0; padding:0; list-style:none;}
+	.btn a {display:inline-block; padding:10px; border:1px solid gray; text-decoration:none;}
+</style>
+<div class="big_test">
+	<div class="paging">
+		<i class="num">0</i>
+		/
+		<b class="total">0</b>
+	</div>
+	<div class="btn">
+		<a href="http://naver.com" target="_blank" class="prev">&lt;</a>
+		<a href="#" class="next">&gt;</a>
+	</div>
+	<ul class="lst">
+		<li>리스트1</li>
+		<li>리스트2</li>
+		<li>리스트3</li>
+		<li>리스트4</li>
+		<li>리스트5</li>
+		<li>리스트6</li>
+		<li>리스트7</li>
+		<li>리스트8</li>
+		<li>리스트9</li>
+		<li>리스트10</li>
+		<li>리스트11</li>
+		<li>리스트12</li>
+		<li>리스트13</li>
+		<li>리스트14</li>
+		<li>리스트15</li>
+		<li>리스트16</li>
+		<li>리스트17</li>
+	</ul>
+</div>
+<script>
+$(function(){
+
+	var $big_test = $('.big_test');
+	var $big_btn = $big_test.find('.btn a');
+	var $big_prev = $big_test.find('.prev');
+	var $big_next = $big_test.find('.next');
+	var $big_num = $big_test.find('.num');
+	var $big_total = $big_test.find('.total');
+	var $big_lst = $big_test.find('.lst li');
+	
+	var idx = 0;
+	var cur = 4;
+	var page = Math.ceil( $big_lst.length / cur );
+	$big_total.text(page);
+	$big_num.text(idx+1);
+	
+	$big_lst.hide();
+	$big_lst.slice(0, 4).show();
+	
+	/*
+	$big_btn.click(function(){
+		if( $(this).is('.prev') ){
+		   
+		}
+		else if( $(this).is('.next') ){
+				 
+		}
+	});
+	*/
+	$big_next.click(function(){
+		idx ++;
+		$big_num.text(idx+1);
+		if( idx >= page ){
+			idx = 0;
+			$big_num.text(idx+1);
+		}
+		console.log(idx);
+		
+		$big_lst.hide();
+		$big_lst.slice(cur*idx, (cur*idx)+cur).show();
+		
+		
+		
+		return false;
+	});
+	
+	$big_prev.click(function(){
+		idx --;
+		$big_num.text(idx+1);
+		if( idx < 0 ){
+			idx = page-1;
+			$big_num.text(idx+1);
+		}
+		console.log(idx);
+		
+		$big_lst.hide();
+		$big_lst.slice(cur*idx, (cur*idx)+cur).show();
+		
+		
+		return false;
+	});
+});
+</script>
+
+<!--<script type="text/javascript">
+$(function(){
+	var option = {size:3} //노출 갯수
+	var cant = option.size;
+	var list_select = $('.countlist1 > li');
+	var list_height = list_select.height();
+	var count = 0;
+	var total_n = Math.ceil(list_select.length/cant);
+	$('.countlist1 > li:nth-child('+ cant +'n)').css('margin-right','0')
+	$('.count_type1_num').text(count+1);
+	$('.count_type1_total').text(total_n);
+
+
+
+	$('.btn_count_type1_next').bind({
+		click:function(){
+			count += 1
+			$('.count_type1_num').text(count+1);
+			if(count >= total_n){
+				count = 0
+				$('.count_type1_num').text(count+1);
+				slice_number_type1(count);
+			}else{
+				slice_number_type1(count);
+			};
+			clickDummy('slidePrevNext');
+		}
+	})
+	$('.btn_count_type1_prev').bind({
+		click:function(){
+			count -= 1
+			$('.count_type1_num').text(count+1);
+			if(count < 0){
+				count = total_n - 1
+				$('.count_type1_num').text(count+1);
+				//slice_number_type1(count);
+			}else{
+				slice_number_type1(count);
+			}
+			clickDummy('slidePrevNext');
+		}
+	})
+
+
+	slice_number_type1(count)
+	function slice_number_type1(number){
+		var atr = number * cant;
+		list_select.hide().slice(atr,atr+cant).show();
+	}
+});
+</script>-->
+</body>
+</html>
