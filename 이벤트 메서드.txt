@@ -1,0 +1,59 @@
+﻿자주쓰는것들
+
+ .focus()
+ 요소에서 포커스 되었을 경우
+
+ .blur();
+ 요소에서 포커스를 잃어 버릴 경우
+
+ .click()
+ 마우스 클릭시
+
+ .dblclick()
+ 마우스 더블클릭시
+
+ .mousedown()
+ 마우스 버튼을 누르는 순간
+
+ .mouseup()
+ 마우스 버튼을 놓는 순간
+
+ .hover()
+ 마우스가 요소 위에 위치할때
+
+ .mouseenter()
+ 선택 영역에 마우스가 위치할때 (영역내에 한번만 실행)
+
+ .mouseleave()
+ 선택 요소에서 마우스가 벗어날때 (영역내에 한번만 실행)
+
+ .mouseout()
+ 선택 요소에서 마우스가 벗어날때
+
+ .change()
+ input, textarea, select 등의 요소 값이 변경될시
+
+ .keydown()
+ 키 입력시 (모든키)
+
+ .keypress()
+ 키 입력시 발생
+
+ .keyup()
+ 키 입력 후﻿
+
+ .ready()
+ DOM 이 모두 완료되었을때
+
+ .resize()
+ 창크기가 변경될때
+
+ .scroll()
+ 스크롤될때
+
+ .select()
+ 선택한 개체를 마우스를 통해 선택 input, textarea에 제한적 적용
+
+ .submit()
+ submit이 일어날때
+
